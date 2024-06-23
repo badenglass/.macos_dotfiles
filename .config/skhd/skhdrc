@@ -1,0 +1,137 @@
+:: default : yabai -m config active_window_opacity 1.0; yabai -m config normal_window_opacity 1.0;
+:: f_resize @ : yabai -m window --toggle float --grid 4:4:1:1:2:2
+:: resize @ : yabai -m config active_window_opacity 0.8
+:: move @ : yabai -m config active_window_opacity 0.8
+:: gaps @ : yabai -m config normal_window_opacity 0.8; yabai -m config active_window_opacity 0.8
+
+# shortcuts
+meh - b : open -a firefox
+meh - return : yabai -m space --focus 2
+
+# change window focus within space
+alt - j : yabai -m window --focus south
+alt - k : yabai -m window --focus north
+alt - h : yabai -m window --focus west
+alt - l : yabai -m window --focus east
+
+# change focus between external displays (left and right)
+alt + shift - p : yabai -m display --focus west
+alt + shift - n : yabai -m display --focus east
+
+# focus space
+meh - 1 : yabai -m space --focus 1
+meh - 3 : yabai -m space --focus 3
+meh - 4 : yabai -m space --focus 4
+meh - 5 : yabai -m space --focus 5
+meh - 6 : yabai -m space --focus 6
+meh - 7 : yabai -m space --focus 7
+
+meh - n : yabai -m space --focus next
+meh - p : yabai -m space --focus prev
+
+# toggle layout
+ctrl - space : yabai -m space --layout "$(yabai -m query --spaces --space | jq -r 'if .type == "bsp" then "stack" else "bsp" end')"
+ctrl + alt - space : yabai -m space --layout float
+
+meh - space : yabai -m window --toggle float
+
+default < ctrl + alt - r ; resize
+default < ctrl + alt - f ; f_resize
+
+# enter resize
+default < meh - r : yabai -m query --spaces --space | jq -r 'if .type == "bsp" then "skhd -k '\''ctrl + alt - r'\''" else "skhd -k '\''ctrl + alt - f'\''" end' | sh
+
+# exit resize
+resize < escape ; default
+f_resize < escape ; default
+
+# equalize windows
+resize < e : yabai -m space --balance
+
+# flip along y
+resize < y : yabai -m space --mirror y-axis
+
+# flip along x
+resize < x : yabai -m space --mirror x-axis
+
+# increase bsp window size
+resize < h : yabai -m window --resize left:-25:0
+resize < j : yabai -m window --resize bottom:0:25
+resize < k : yabai -m window --resize top:0:-25
+resize < l : yabai -m window --resize right:25:0
+
+# decrease bsp window size
+resize < alt - l : yabai -m window --resize left:25:0
+resize < alt - k : yabai -m window --resize bottom:0:-25
+resize < alt - j : yabai -m window --resize top:0:25
+resize < alt - h : yabai -m window --resize right:-25:0
+
+resize < m : yabai -m window --toggle zoom-fullscreen
+
+# increase floating window size
+f_resize < h : yabai -m window --resize left:-25:0
+f_resize < j : yabai -m window --resize bottom:0:25
+f_resize < k : yabai -m window --resize top:0:-25
+f_resize < l : yabai -m window --resize right:25:0
+
+# decrease floating window size
+f_resize < alt - l : yabai -m window --resize left:25:0
+f_resize < alt - k : yabai -m window --resize bottom:0:-25
+f_resize < alt - j : yabai -m window --resize top:0:25
+f_resize < alt - h : yabai -m window --resize right:-25:0
+
+# increase padding (-)
+resize < o: yabai -m space --padding rel:20:20:20:20
+
+# increase gap (+)
+resize < shift - i : yabai -m space --gap rel:10
+
+# decrease gap (-)
+resize < i : yabai -m space --gap rel:-10
+
+# decrease padding (+)
+resize < shift - o : yabai -m space --padding rel:-20:-20:-20:-20
+
+# restore padding
+resize < return : yabai -m space --padding abs:12:38:20:20
+
+# turn off gaps
+resize < q : yabai -m space --toggle padding; yabai -m space --toggle gap
+
+# enter move
+default < meh - e ; move
+
+# exit move
+move < escape ; default
+
+# rotate layout clockwise
+move < r : yabai -m space --rotate 270
+move < e : yabai -m window --toggle split
+
+# move window to prev and next space
+move < n : yabai -m window --space next
+move < p : yabai -m window --space prev
+
+# swap windows
+move < j : yabai -m window --swap south
+move < k : yabai -m window --swap north
+move < h : yabai -m window --swap west
+move < l : yabai -m window --swap east
+
+# move window and split
+move < alt - j : yabai -m window --warp south
+move < alt - k : yabai -m window --warp north
+move < alt - h : yabai -m window --warp west
+move < alt - l : yabai -m window --warp east
+
+move < 1 : yabai -m window --space 1
+move < 2 : yabai -m window --space 2
+move < 3 : yabai -m window --space 3
+move < 4 : yabai -m window --space 4
+move < 5 : yabai -m window --space 5
+move < 6 : yabai -m window --space 6
+move < 7 : yabai -m window --space 7
+
+ctrl + alt - q : brew services stop yabai
+ctrl + alt - s : brew services start yabai
+# ctrl + alt - r : brew services restart yabai
