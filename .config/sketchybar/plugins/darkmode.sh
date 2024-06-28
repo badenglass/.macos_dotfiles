@@ -9,10 +9,10 @@ DARK_THEME="$THEME_DIR/ayu_dark.toml"
 
 if [[ $(defaults read -g AppleInterfaceStyle 2>/dev/null) == "Dark" ]]
 then
-    sketchybar -m --set appearance icon="$SUN_ICN"
+    sketchybar -m --set appearance icon="$MOON_ICN"
     cp $DARK_THEME $CONFIG
 
 else
-    sketchybar -m --set appearance icon="$MOON_ICN"
+    sketchybar -m --set appearance icon="$SUN_ICN"
     cp $LIGHT_THEME $CONFIG
 fi
