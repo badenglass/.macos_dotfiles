@@ -1,5 +1,27 @@
-format = "$all"
+# ~/.config/starship.toml
 
-[character] # The name of the module we are configuring is 'character'
-success_symbol = '[➜](bold green)'
+add_newline = true
+
+[character]
+success_symbol = '[➜](bold #555555)'
+error_symbol = '[➜](bold #AAAAAA)'
+
+[directory]
+truncation_length = 3
+truncation_symbol = "…/"
+style = "bold #AAAAAA"
+
+[git_branch]
+symbol = "🌱 "
+style = "bold #708090"
+
+[git_status]
+staged = "[+](bold #789978)"
+modified = "[!](bold #FFAA88)"
+untracked = "[?](bold #D70000)"
+style = "bold #7788AA"
+
+[package]
+symbol = "📦 "
+style = "bold #708090"
 
