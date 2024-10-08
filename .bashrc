@@ -8,6 +8,7 @@ random-theme() {
     kitty @ set-colors -c "$HOME/.config/kitty/$(cat $HOME/.config/kitty/theme.conf).conf"
 }
 
+# this won't work for you
 fzf-theme() {
     themes=(
         "monokai-pro-classic"
