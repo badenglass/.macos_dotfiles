@@ -1,1 +1,1 @@
-*dotfiles* by Baden Glass
+**dotfiles** by Baden Glass
