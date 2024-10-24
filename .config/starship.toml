@@ -1,6 +1,6 @@
 [character]
-success_symbol = "[➜](green)"
-error_symbol = "[x](bold red)"
+success_symbol = "[➜](color1)"
+error_symbol = "[x](red)"
 vimcmd_symbol = "[<](bold green)"
 
 [git_commit]
@@ -51,6 +51,7 @@ symbol = ".NET "
 
 [directory]
 read_only = " ro"
+style = "color2"
 
 [docker_context]
 symbol = "docker "
